@@ -28,9 +28,10 @@ gulp.task('eslint', function() {
             "ecmaVersion": 6
         },
       rules: {
-            "arrow-body-style": ["error", "always"],
-            "no-var": "error",
-            "prefer-const": "error"
+            "arrow-body-style": ["warn", "always"],
+            "no-var": "warn",
+            "prefer-const": "warn",
+            "indent": "warn"
         }
     }))
     .pipe(eslint.results(results => {
@@ -42,7 +43,11 @@ gulp.task('eslint', function() {
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
     .pipe(babel({
-      presets: ['env']
+      presets: ["env", {
+          "targets": {
+              "browsers": ["last 4 versions"]
+          }
+      }]
   }))
   .pipe(gulp.dest(jsPub));
 });
