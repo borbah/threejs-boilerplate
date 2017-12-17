@@ -35,7 +35,7 @@ gulp.task('eslint', function() {
         }
     }))
     .pipe(eslint.results(results => {
-    	// Called once for all ESLint results. 
+    	// Called once for all ESLint results.
         console.log(`Total Results: ${results.length}`);
         console.log(`Total Warnings: ${results.warningCount}`);
         console.log(`Total Errors: ${results.errorCount}`);
@@ -43,11 +43,11 @@ gulp.task('eslint', function() {
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
     .pipe(babel({
-      presets: ["env", {
+      presets: [["env", {
           "targets": {
               "browsers": ["last 4 versions"]
           }
-      }]
+      }]]
   }))
   .pipe(gulp.dest(jsPub));
 });
