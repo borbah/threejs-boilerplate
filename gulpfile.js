@@ -49,6 +49,11 @@ gulp.task('eslint', function() {
           }
       }]]
   }))
+  .on('error', function(e) {
+      console.log('>>> ERROR', e);
+      // emit here
+      this.emit('end');
+    })
   .pipe(gulp.dest(jsPub));
 });
 
